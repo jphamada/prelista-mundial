@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   );
 
   try {
-    // Obtener todos los votos
+    // Obtener todos los votos (Solo la columna jugadores por privacidad)
     const { data: selecciones, error } = await supabase
       .from('selecciones')
       .select('jugadores');
@@ -40,16 +40,15 @@ export default async function handler(req, res) {
       percentage: totalVotos > 0 ? Math.round((conteoJugadores[id] / totalVotos) * 100) : 0
     }));
 
-    // Cache desactivado para debug
-    // res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
+    // RE-HABILITAMOS EL CACHÉ (1 hora) como pediste para optimizar
+    res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
 
     return res.status(200).json({
       totalVotos,
-      stats,
-      debug: { rows: selecciones ? selecciones.length : 0 }
+      stats
     });
   } catch (error) {
     console.error('Error en Stats:', error);
-    return res.status(500).json({ error: 'Error al obtener estadísticas', details: error.message });
+    return res.status(500).json({ error: 'Error al obtener estadísticas' });
   }
 }

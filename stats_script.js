@@ -3,16 +3,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     const totalVotersEl = document.getElementById('total-voters');
 
     try {
-        console.log('Iniciando carga de estadísticas...');
         const response = await fetch('/api/stats');
         
         if (!response.ok) {
             const errorText = await response.text();
-            throw new Error(`Error del servidor (${response.status}): ${errorText}`);
+            throw new Error(`Error del servidor (${response.status})`);
         }
 
         const data = await response.json();
-        console.log('Datos recibidos:', data);
 
         if (data.error) throw new Error(data.error);
 
@@ -22,10 +20,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             statsList.innerHTML = `
                 <div style="text-align:center; padding: 50px; color: var(--arg-blue);">
                     <p>Aún no hay votos procesados.</p>
-                    <p style="font-size: 0.8rem; opacity: 0.6; margin-top: 10px;">
-                        Filas en DB: ${data.debug ? data.debug.rows : '?'}<br>
-                        Stats generados: ${data.stats ? data.stats.length : 0}
-                    </p>
                     <button onclick="location.reload()" class="stats-btn" style="margin-top:20px;">Actualizar</button>
                 </div>
             `;
@@ -37,8 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         statsList.innerHTML = `
             <div class="error-container" style="text-align:center; padding: 40px;">
                 <p class="error" style="color: var(--arg-gold); font-size: 1.2rem;">❌ Error al cargar estadísticas</p>
-                <code style="display:block; margin:20px 0; color: #ff6b6b; font-size:0.8rem; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px;">${err.message}</code>
-                <button onclick="location.reload()" class="stats-btn">Reintentar</button>
+                <button onclick="location.reload()" class="stats-btn" style="margin-top:20px;">Reintentar</button>
             </div>
         `;
     }
