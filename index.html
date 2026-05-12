@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prelista Mundial 2026 - Selección Argentina</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <meta name="description" content="Elige a tus 11 favoritos para representar a Argentina en el Mundial 2026.">
+</head>
+<body>
+
+    <header>
+        <div class="title-container">
+            <h1>Prelista Mundial 2026</h1>
+            <p class="instruction">Elegí a los 26 jugadores que, según tu criterio, deberían viajar al Mundial</p>
+            <div id="selection-counter" class="selection-badge">0 / 26 Jugadores</div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="players-list">
+            <!-- Dynamically populated by JS -->
+        </div>
+    </main>
+
+    <div class="footer-cta">
+        <button id="confirm-btn" class="confirm-btn">Confirmar Equipo</button>
+    </div>
+
+    <!-- Modal de Confirmación -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal-content">
+            <h2 class="modal-title">Tu Equipo Ideal 🇦🇷</h2>
+            <div id="modal-list" class="modal-list">
+                <!-- Selected players list -->
+            </div>
+            <button id="final-confirm" class="final-confirm-btn">¡Enviar Selección!</button>
+            <button id="close-modal" class="close-modal">Cambiar algo</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
