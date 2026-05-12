@@ -32,7 +32,10 @@
                 <h2>¡Voto Registrado!</h2>
                 <p>Tu lista de 26 jugadores para el Mundial 2026 ha sido enviada con éxito.</p>
                 <div class="afa-logo-mini">🇦🇷</div>
-                <button onclick="location.reload()" class="final-confirm-btn" style="margin-top: 20px;">Armar otra lista</button>
+                <div class="success-actions">
+                    <button onclick="location.reload()" class="final-confirm-btn">Armar otra lista</button>
+                    <button onclick="location.href='stats.html'" class="stats-btn">¿Qué votaron los lectores?</button>
+                </div>
             </div>
         </div>
     </main>
@@ -60,6 +63,7 @@
         </div>
     </div>
 
+    <script src="players_data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

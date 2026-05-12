@@ -455,9 +455,82 @@ h1 {
     margin-bottom: 30px;
 }
 
-.afa-logo-mini {
-    font-size: 2rem;
-    opacity: 0.5;
+.success-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.stats-btn {
+    background: transparent;
+    border: 2px solid var(--arg-gold);
+    color: var(--arg-gold);
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.stats-btn:hover {
+    background: var(--arg-gold);
+    color: var(--arg-navy);
+}
+
+.back-link {
+    background: none;
+    border: none;
+    color: var(--arg-blue);
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+/* Stat Card specific */
+.stat-card {
+    cursor: default !important;
+    display: block !important;
+    padding: 15px !important;
+}
+
+.stat-container {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stat-bar-bg {
+    flex: 1;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.stat-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--arg-blue), var(--arg-gold));
+    border-radius: 4px;
+    transition: width 1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.stat-percentage {
+    font-weight: 800;
+    color: var(--arg-gold);
+    min-width: 40px;
+    text-align: right;
+    font-size: 0.9rem;
+}
+
+.loading-spinner {
+    text-align: center;
+    padding: 50px;
+    color: var(--arg-blue);
+    font-style: italic;
 }
 
 .final-confirm-btn {
