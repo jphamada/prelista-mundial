@@ -76,6 +76,9 @@ const finalConfirmBtn = document.getElementById('final-confirm');
 const closeModalBtn = document.getElementById('close-modal');
 const emailInput = document.getElementById('user-email');
 const errorMsg = document.getElementById('error-msg');
+const successScreen = document.getElementById('success-screen');
+const footerCTA = document.querySelector('.footer-cta');
+const headerEl = document.querySelector('header');
 
 function init() {
     renderPlayers();
@@ -222,8 +225,12 @@ finalConfirmBtn.onclick = async () => {
         if (!response.ok) {
             alert(result.error || 'Hubo un error al registrar tu voto.');
         } else {
-            alert('¡Selección confirmada y voto registrado con éxito! 🇦🇷🏆');
+            // Mostrar pantalla de éxito
             modalOverlay.style.display = 'none';
+            successScreen.style.display = 'flex';
+            footerCTA.style.display = 'none';
+            headerEl.style.display = 'none';
+            document.body.style.overflow = 'hidden';
         }
     } catch (err) {
         console.error('Error al enviar el voto:', err);

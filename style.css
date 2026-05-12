@@ -403,6 +403,63 @@ h1 {
     letter-spacing: 1px;
 }
 
+/* Success Screen */
+.success-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--arg-navy);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    animation: fadeIn 0.5s ease;
+}
+
+.success-content {
+    text-align: center;
+    max-width: 400px;
+}
+
+.success-icon {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 20px rgba(198, 164, 95, 0.4));
+    animation: trophyBounce 2s infinite ease-in-out;
+}
+
+@keyframes trophyBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.success-content h2 {
+    font-size: 2.2rem;
+    color: var(--arg-gold);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.success-content p {
+    color: var(--arg-blue);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.afa-logo-mini {
+    font-size: 2rem;
+    opacity: 0.5;
+}
+
 .final-confirm-btn {
     background: var(--arg-blue);
     color: var(--arg-navy);
