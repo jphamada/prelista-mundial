@@ -19,7 +19,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         totalVotersEl.innerText = `${data.totalVotos || 0} Votantes`;
         
         if (!data.stats || data.stats.length === 0) {
-            statsList.innerHTML = '<p class="loading-spinner">Aún no hay votos registrados. ¡Sé el primero en votar!</p>';
+            statsList.innerHTML = `
+                <div style="text-align:center; padding: 50px; color: var(--arg-blue);">
+                    <p>Aún no hay votos procesados.</p>
+                    <p style="font-size: 0.8rem; opacity: 0.6; margin-top: 10px;">
+                        Filas en DB: ${data.debug ? data.debug.rows : '?'}<br>
+                        Stats generados: ${data.stats ? data.stats.length : 0}
+                    </p>
+                    <button onclick="location.reload()" class="stats-btn" style="margin-top:20px;">Actualizar</button>
+                </div>
+            `;
         } else {
             renderStats(data.stats);
         }
