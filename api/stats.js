@@ -19,15 +19,19 @@ export default async function handler(req, res) {
 
     if (error) throw error;
 
-    const totalVotos = selecciones.length;
+    const totalVotos = selecciones ? selecciones.length : 0;
     const conteoJugadores = {};
 
     // Procesar cada selección
-    selecciones.forEach(sel => {
-      sel.jugadores.forEach(id => {
-        conteoJugadores[id] = (conteoJugadores[id] || 0) + 1;
+    if (selecciones) {
+      selecciones.forEach(sel => {
+        if (sel.jugadores) {
+          sel.jugadores.forEach(id => {
+            conteoJugadores[id] = (conteoJugadores[id] || 0) + 1;
+          });
+        }
       });
-    });
+    }
 
     // Convertir a porcentajes
     const stats = Object.keys(conteoJugadores).map(id => ({
@@ -36,15 +40,16 @@ export default async function handler(req, res) {
       percentage: totalVotos > 0 ? Math.round((conteoJugadores[id] / totalVotos) * 100) : 0
     }));
 
-    // Configurar Cache-Control (1 hora en el borde de Vercel)
-    res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
+    // Cache desactivado para debug
+    // res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
 
     return res.status(200).json({
       totalVotos,
-      stats
+      stats,
+      debug: { rows: selecciones ? selecciones.length : 0 }
     });
   } catch (error) {
     console.error('Error en Stats:', error);
-    return res.status(500).json({ error: 'Error al obtener estadísticas' });
+    return res.status(500).json({ error: 'Error al obtener estadísticas', details: error.message });
   }
 }
