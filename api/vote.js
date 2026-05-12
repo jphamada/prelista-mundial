@@ -8,12 +8,18 @@ export default async function handler(req, res) {
 
   const { email, jugadores } = req.body;
 
-  // Validar datos básicos
-  if (!email || !jugadores || !Array.isArray(jugadores)) {
-    return res.status(400).json({ error: 'Datos incompletos' });
+  // Validar variables de entorno
+  if (!process.env.SUPABASE_URL || !process.env.SUPABASE_ANON_KEY) {
+    console.error('Faltan variables de entorno en Vercel');
+    return res.status(500).json({ error: 'Configuración del servidor incompleta (faltan env vars)' });
   }
 
-  // Inicializar Supabase con variables de entorno de Vercel
+  // Validar datos básicos
+  if (!email || !jugadores || !Array.isArray(jugadores)) {
+    return res.status(400).json({ error: 'Datos incompletos o formato incorrecto' });
+  }
+
+  // Inicializar Supabase
   const supabase = createClient(
     process.env.SUPABASE_URL,
     process.env.SUPABASE_ANON_KEY
