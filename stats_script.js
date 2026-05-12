@@ -3,16 +3,35 @@ document.addEventListener('DOMContentLoaded', async () => {
     const totalVotersEl = document.getElementById('total-voters');
 
     try {
+        console.log('Iniciando carga de estadísticas...');
         const response = await fetch('/api/stats');
+        
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Error del servidor (${response.status}): ${errorText}`);
+        }
+
         const data = await response.json();
+        console.log('Datos recibidos:', data);
 
         if (data.error) throw new Error(data.error);
 
-        totalVotersEl.innerText = `${data.totalVotos} Votantes`;
-        renderStats(data.stats);
+        totalVotersEl.innerText = `${data.totalVotos || 0} Votantes`;
+        
+        if (!data.stats || data.stats.length === 0) {
+            statsList.innerHTML = '<p class="loading-spinner">Aún no hay votos registrados. ¡Sé el primero en votar!</p>';
+        } else {
+            renderStats(data.stats);
+        }
     } catch (err) {
-        console.error(err);
-        statsList.innerHTML = `<p class="error">Error al cargar estadísticas: ${err.message}</p>`;
+        console.error('Error detallado:', err);
+        statsList.innerHTML = `
+            <div class="error-container" style="text-align:center; padding: 40px;">
+                <p class="error" style="color: var(--arg-gold); font-size: 1.2rem;">❌ Error al cargar estadísticas</p>
+                <code style="display:block; margin:20px 0; color: #ff6b6b; font-size:0.8rem; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px;">${err.message}</code>
+                <button onclick="location.reload()" class="stats-btn">Reintentar</button>
+            </div>
+        `;
     }
 });
 
