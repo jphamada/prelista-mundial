@@ -1,5 +1,4 @@
 
-
 // La lógica de Supabase se maneja ahora en el servidor (Vercel Functions) para mayor seguridad.
 let selectedPlayers = new Set();
 const SELECTION_LIMIT = 26;
@@ -35,8 +34,6 @@ function renderPlayers() {
     for (const [key, label] of Object.entries(categories)) {
         const categoryPlayers = playersData.filter(p => p.category === key);
         
-        // Let's keep them expanded initially for better UX, or collapsed? 
-        // User said "it's too long", so let's collapse them.
         html += `
             <div class="position-group collapsed" id="group-${key}">
                 <div class="position-header" onclick="toggleSection('${key}')">
@@ -51,7 +48,6 @@ function renderPlayers() {
                                     <div class="player-avatar">${player.name.charAt(0)}</div>
                                     <div>
                                         <div class="player-name">${player.name}</div>
-                                        <div style="font-size: 0.75rem; color: var(--arg-blue); opacity: 0.8">${player.position}</div>
                                     </div>
                                 </div>
                                 <div class="checkbox-visual"></div>
@@ -125,7 +121,6 @@ confirmBtn.onclick = () => {
     modalList.innerHTML = chosenOnes.map(p => `
         <div class="modal-item">
             <span>${p.name}</span>
-            <span>${p.position}</span>
         </div>
     `).join('');
     
@@ -135,7 +130,6 @@ confirmBtn.onclick = () => {
 finalConfirmBtn.onclick = async () => {
     const email = emailInput.value.trim();
     
-    // Validación básica de email
     if (!email || !email.includes('@')) {
         errorMsg.innerText = 'Por favor, ingresa un correo válido.';
         return;
@@ -162,7 +156,6 @@ finalConfirmBtn.onclick = async () => {
         if (!response.ok) {
             alert(result.error || 'Hubo un error al registrar tu voto.');
         } else {
-            // Mostrar pantalla de éxito
             modalOverlay.style.display = 'none';
             successScreen.style.display = 'flex';
             footerCTA.style.display = 'none';

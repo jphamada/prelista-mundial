@@ -67,7 +67,6 @@ function renderStats(stats) {
             playerCard.innerHTML = `
                 <div class="player-info">
                     <span class="player-name">${player.name}</span>
-                    <span class="player-pos">${player.position}</span>
                 </div>
                 <div class="stat-container">
                     <div class="stat-bar-bg">
