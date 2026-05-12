@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <meta name="description" content="Elige a tus 11 favoritos para representar a Argentina en el Mundial 2026.">
+    <meta name="description" content="Elige a tus 26 favoritos para representar a Argentina en el Mundial 2026.">
 </head>
 <body>
 
@@ -37,7 +37,14 @@
             <div id="modal-list" class="modal-list">
                 <!-- Selected players list -->
             </div>
-            <button id="final-confirm" class="final-confirm-btn">¡Enviar Selección!</button>
+            
+            <div class="email-section">
+                <label for="user-email">Tu correo para confirmar el voto:</label>
+                <input type="email" id="user-email" placeholder="nombre@ejemplo.com" required>
+                <p id="error-msg" class="error-msg"></p>
+            </div>
+
+            <button id="final-confirm" class="final-confirm-btn">Confirmar y Votar</button>
             <button id="close-modal" class="close-modal">Cambiar algo</button>
         </div>
     </div>

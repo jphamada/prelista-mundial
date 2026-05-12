@@ -63,6 +63,7 @@ const playersData = [
     { id: 55, name: 'MATEO PELLEGRINO', position: 'Delantero centro', category: 'delantero' }
 ];
 
+// La lógica de Supabase se maneja ahora en el servidor (Vercel Functions) para mayor seguridad.
 let selectedPlayers = new Set();
 const SELECTION_LIMIT = 26;
 
@@ -73,6 +74,8 @@ const modalOverlay = document.getElementById('modal-overlay');
 const modalList = document.getElementById('modal-list');
 const finalConfirmBtn = document.getElementById('final-confirm');
 const closeModalBtn = document.getElementById('close-modal');
+const emailInput = document.getElementById('user-email');
+const errorMsg = document.getElementById('error-msg');
 
 function init() {
     renderPlayers();
@@ -189,9 +192,46 @@ confirmBtn.onclick = () => {
     modalOverlay.style.display = 'flex';
 };
 
-finalConfirmBtn.onclick = () => {
-    alert('¡Selección de 26 jugadores confirmada! 🇦🇷🏆');
-    modalOverlay.style.display = 'none';
+finalConfirmBtn.onclick = async () => {
+    const email = emailInput.value.trim();
+    
+    // Validación básica de email
+    if (!email || !email.includes('@')) {
+        errorMsg.innerText = 'Por favor, ingresa un correo válido.';
+        return;
+    }
+    errorMsg.innerText = '';
+
+    finalConfirmBtn.disabled = true;
+    finalConfirmBtn.innerText = 'Enviando...';
+
+    try {
+        const response = await fetch('/api/vote', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+                email: email, 
+                jugadores: Array.from(selectedPlayers) 
+            })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            alert(result.error || 'Hubo un error al registrar tu voto.');
+        } else {
+            alert('¡Selección confirmada y voto registrado con éxito! 🇦🇷🏆');
+            modalOverlay.style.display = 'none';
+        }
+    } catch (err) {
+        console.error('Error al enviar el voto:', err);
+        alert('No se pudo conectar con el servidor. Intenta de nuevo.');
+    } finally {
+        finalConfirmBtn.disabled = false;
+        finalConfirmBtn.innerText = 'Confirmar y Votar';
+    }
 };
 
 closeModalBtn.onclick = () => {
