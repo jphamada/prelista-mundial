@@ -94,6 +94,20 @@ h1 span {
     font-weight: 400;
 }
 
+.view-results-link {
+    color: var(--primary);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: var(--transition);
+}
+
+.view-results-link:hover {
+    text-decoration: underline;
+    transform: translateX(5px);
+}
+
 .selection-badge {
     background: var(--black);
     color: var(--white);
@@ -303,7 +317,7 @@ h1 span {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    z-index: 1000;
+    z-index: 2000;
 }
 
 .modal-content {
@@ -386,9 +400,18 @@ h1 span {
 
 /* Success Screen */
 .success-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 40px;
-    z-index: 1000;
+    z-index: 3000;
+    text-align: center;
 }
 
 .success-icon {
@@ -407,6 +430,22 @@ h1 span {
     font-weight: 900;
     color: var(--black);
     margin-bottom: 20px;
+}
+
+.success-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.back-link {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-weight: 700;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 /* Stats Page Bars */
@@ -437,6 +476,18 @@ h1 span {
     background: var(--black);
     color: var(--white);
     border: none;
+    padding: 18px 35px;
+    border-radius: 14px;
+    font-weight: 900;
+    font-size: 1.1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: var(--transition);
+}
+
+.stats-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 /* Responsive */
