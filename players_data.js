@@ -43,11 +43,11 @@ const playersData = [
     { id: 37, name: 'NICOLÁS DOMÍNGUEZ', position: 'Mediocampista central', category: 'mediocampista' },
     { id: 38, name: 'EMILIANO BUENDIA', position: 'Mediocampista ofensivo', category: 'mediocampista' },
     { id: 39, name: 'VALENTÍN BARCO', position: 'Lateral / Medio', category: 'mediocampista' },
-    { id: 40, name: 'NICOLÁS PAZ', position: 'Mediocampista central', category: 'mediocampista' },
-    { id: 41, name: 'FRANCO MASTANTUONO', position: 'Mediocampista ofensivo', category: 'mediocampista' },
-    { id: 42, name: 'THIAGO ALMADA', position: 'Mediocampista ofensivo', category: 'mediocampista' },
 
     // DELANTEROS
+    { id: 40, name: 'NICOLÁS PAZ', position: 'Delantero / Mediapunta', category: 'delantero' },
+    { id: 41, name: 'FRANCO MASTANTUONO', position: 'Delantero / Mediapunta', category: 'delantero' },
+    { id: 42, name: 'THIAGO ALMADA', position: 'Delantero / Mediapunta', category: 'delantero' },
     { id: 43, name: 'LIONEL MESSI', position: 'Extremo derecho', category: 'delantero' },
     { id: 44, name: 'TOMÁS ARANDA', position: 'Extremo', category: 'delantero' },
     { id: 45, name: 'NICOLÁS GONZÁLEZ', position: 'Extremo derecho', category: 'delantero' },
