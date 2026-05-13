@@ -3,67 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prelista Mundial 2026 - Selección Argentina</title>
+    <title>Mundial 2026 - Mi Selección</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <meta name="description" content="Elige a tus 26 favoritos para representar a Argentina en el Mundial 2026.">
 </head>
 <body>
 
     <header>
         <div class="title-container">
-            <h1>Prelista Mundial 2026</h1>
-            <p class="instruction">Elegí a los 26 jugadores que, según tu criterio, deberían viajar al Mundial</p>
+            <h1><span>COBERTURA ESPECIAL</span>MUNDIAL 2026</h1>
+            <p class="instruction">Elige a tus 26 favoritos para representar a la Selección Argentina.</p>
             <div id="selection-counter" class="selection-badge">0 / 26 Jugadores</div>
         </div>
     </header>
 
     <main class="container">
         <div id="players-list">
-            <!-- Dynamically populated by JS -->
-        </div>
-
-        <!-- Pantalla de Éxito -->
-        <div id="success-screen" class="success-screen" style="display: none;">
-            <div class="success-content">
-                <div class="success-icon">🏆</div>
-                <h2>¡Voto Registrado!</h2>
-                <p>Tu lista de 26 jugadores para el Mundial 2026 ha sido enviada con éxito.</p>
-                <div class="afa-logo-mini">🇦🇷</div>
-                <div class="success-actions">
-                    <button onclick="location.reload()" class="final-confirm-btn">Armar otra lista</button>
-                    <button onclick="location.href='stats.html'" class="stats-btn">¿Qué votaron los lectores?</button>
-                </div>
-            </div>
+            <!-- Los jugadores se cargarán dinámicamente -->
         </div>
     </main>
 
-    <div class="footer-cta">
-        <button id="confirm-btn" class="confirm-btn">Confirmar Equipo</button>
-    </div>
+    <footer class="footer-cta">
+        <button id="confirm-btn" class="confirm-btn" disabled>Faltan 26</button>
+    </footer>
 
     <!-- Modal de Confirmación -->
     <div id="modal-overlay" class="modal-overlay">
         <div class="modal-content">
-            <h2 class="modal-title">Tu Equipo Ideal 🇦🇷</h2>
-            <div id="modal-list" class="modal-list">
-                <!-- Selected players list -->
-            </div>
-            
+            <h2 class="modal-title">Tu Selección</h2>
+            <div id="modal-list" class="modal-list"></div>
             <div class="email-section">
-                <label for="user-email">Tu correo para confirmar el voto:</label>
-                <input type="email" id="user-email" placeholder="nombre@ejemplo.com" required>
-                <p id="error-msg" class="error-msg"></p>
+                <label for="user-email">TU CORREO PARA VOTAR</label>
+                <input type="email" id="user-email" placeholder="ejemplo@correo.com" required>
+                <div id="error-msg" class="error-msg"></div>
             </div>
-
             <button id="final-confirm" class="final-confirm-btn">Confirmar y Votar</button>
-            <button id="close-modal" class="close-modal">Cambiar algo</button>
+            <button id="close-modal" class="close-modal">Volver a editar</button>
         </div>
     </div>
 
-    <script src="players_data.js"></script>
+    <!-- Pantalla de Éxito -->
+    <div id="success-screen" class="success-screen" style="display:none;">
+        <div class="success-content">
+            <div class="success-icon">🏆</div>
+            <h2>¡Voto Registrado!</h2>
+            <p>Tu selección para el Mundial 2026 ha sido guardada correctamente.</p>
+            <div class="success-actions">
+                <button onclick="window.location.href='stats.html'" class="stats-btn">Ver qué votaron los lectores</button>
+                <button onclick="location.reload()" class="back-link">Volver a votar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="players.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

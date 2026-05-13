@@ -3,29 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estadísticas - Prelista Mundial 2026</title>
+    <title>Resultados - Mundial 2026</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
-<body class="stats-page">
+<body>
 
     <header>
         <div class="title-container">
-            <button onclick="location.href='index.html'" class="back-link">← Volver</button>
-            <h1>Votos de los Lectores</h1>
+            <h1><span>RESULTADOS LECTORES</span>MUNDIAL 2026</h1>
+            <p class="instruction">Estos son los jugadores más votados por la comunidad.</p>
             <div id="total-voters" class="selection-badge">Cargando...</div>
         </div>
     </header>
 
     <main class="container">
         <div id="stats-list">
-            <div class="loading-spinner">Obteniendo datos...</div>
+            <div class="loading-spinner">Calculando tendencias...</div>
+        </div>
+        
+        <div style="text-align:center; margin-top: 40px; padding-bottom: 40px;">
+            <button onclick="window.location.href='index.html'" class="stats-btn" style="background: var(--bg); color: var(--black); border: 2px solid var(--black);">Volver a votar</button>
         </div>
     </main>
 
-    <script src="players_data.js"></script>
+    <script src="players.js"></script>
     <script src="stats_script.js"></script>
 </body>
 </html>
