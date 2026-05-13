@@ -42,26 +42,42 @@ function renderStats(stats) {
     statsList.innerHTML = '';
 
     const categories = [
-        { key: 'arquero', label: 'Arqueros' },
-        { key: 'defensor', label: 'Defensores' },
-        { key: 'mediocampista', label: 'Mediocampistas' },
-        { key: 'delantero', label: 'Delanteros' }
+        { key: 'arquero', label: 'Arqueros', color: 'rgba(255, 193, 7, 0.1)' },
+        { key: 'defensor', label: 'Defensores', color: 'rgba(33, 150, 243, 0.1)' },
+        { key: 'mediocampista', label: 'Mediocampistas', color: 'rgba(156, 39, 176, 0.1)' },
+        { key: 'delantero', label: 'Delanteros', color: 'rgba(233, 30, 99, 0.1)' }
     ];
 
+    // Combinar datos de jugadores con sus estadísticas
+    const allPlayersWithStats = playersData.map(player => {
+        const playerStat = stats.find(s => s.id === player.id) || { percentage: 0, count: 0 };
+        return { ...player, ...playerStat };
+    });
+
+    // Ordenar por porcentaje descendente y tomar los mejores 26
+    const top26Players = allPlayersWithStats
+        .sort((a, b) => b.percentage - a.percentage)
+        .slice(0, 26);
+
     categories.forEach(cat => {
-        const catPlayers = playersData.filter(p => p.category === cat.key);
+        const catPlayers = top26Players.filter(p => p.category === cat.key);
         
+        if (catPlayers.length === 0) return;
+
         const section = document.createElement('div');
-        section.className = 'player-section';
+        section.className = `player-section position-group-stat group-${cat.key}`;
+        section.style.backgroundColor = cat.color;
+        section.style.borderRadius = '24px';
+        section.style.padding = '20px';
+        section.style.marginBottom = '25px';
         
-        section.innerHTML = `<h3>${cat.label}</h3>`;
+        section.innerHTML = `<h3 class="stat-category-title">${cat.label}</h3>`;
         
         const playersDiv = document.createElement('div');
-        playersDiv.className = 'players-grid';
+        playersDiv.className = 'players-grid-stat';
+        playersDiv.style.marginTop = '20px';
 
         catPlayers.forEach(player => {
-            const playerStat = stats.find(s => s.id === player.id) || { percentage: 0, count: 0 };
-            
             const playerCard = document.createElement('div');
             playerCard.className = 'player-card stat-card';
             playerCard.innerHTML = `
@@ -70,9 +86,9 @@ function renderStats(stats) {
                 </div>
                 <div class="stat-container">
                     <div class="stat-bar-bg">
-                        <div class="stat-bar-fill" style="width: ${playerStat.percentage}%"></div>
+                        <div class="stat-bar-fill" style="width: ${player.percentage}%"></div>
                     </div>
-                    <span class="stat-percentage">${playerStat.percentage}%</span>
+                    <span class="stat-percentage">${player.percentage}%</span>
                 </div>
             `;
             playersDiv.appendChild(playerCard);

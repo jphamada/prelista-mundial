@@ -470,6 +470,27 @@ h1 span {
     font-weight: 900;
     color: var(--primary);
     font-size: 1.1rem;
+    min-width: 45px;
+    text-align: right;
+}
+
+.stat-category-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: var(--black);
+    opacity: 0.8;
+}
+
+.stat-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+    margin-left: 20px;
 }
 
 .stats-btn {
