@@ -40,9 +40,9 @@ function renderPlayers() {
 
         const categoryPlayers = playersData.filter(p => p.category === key);
         
-        // Quitamos la clase 'collapsed' para que se vean por defecto
+        // Agregamos la clase 'collapsed' para que estén cerradas por defecto
         html += `
-            <div class="position-group" id="group-${key}">
+            <div class="position-group collapsed" id="group-${key}">
                 <div class="position-header" onclick="toggleSection('${key}')">
                     <h2 class="position-title">${label}</h2>
                     <span class="chevron">▼</span>
