@@ -32,10 +32,17 @@ function renderPlayers() {
     let html = '';
 
     for (const [key, label] of Object.entries(categories)) {
+        // Aseguramos que playersData existe (viene de players_data.js)
+        if (typeof playersData === 'undefined') {
+            console.error('playersData no está definido. Verifica que players_data.js esté cargado.');
+            return;
+        }
+
         const categoryPlayers = playersData.filter(p => p.category === key);
         
+        // Quitamos la clase 'collapsed' para que se vean por defecto
         html += `
-            <div class="position-group collapsed" id="group-${key}">
+            <div class="position-group" id="group-${key}">
                 <div class="position-header" onclick="toggleSection('${key}')">
                     <h2 class="position-title">${label}</h2>
                     <span class="chevron">▼</span>
